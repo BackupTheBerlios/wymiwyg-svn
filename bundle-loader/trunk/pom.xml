@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.wymiwyg</groupId>
+  <artifactId>bundle-loader</artifactId>
+  <packaging>bundle</packaging>
+  <name>bundle-loader</name>
+  <version>1.0-SNAPSHOT</version>
+  <url>http://maven.apache.org</url>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>compile</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <property name="runtime_classpath" refid="maven.runtime.classpath" />
+                <echo message="running schemagenwith classpath: ${runtime_classpath}" />
+                <java fork="true" dir="./" classname="jena.schemagen" classpathref="maven.runtime.classpath">
+                  <arg value="-i" />
+                  <arg value="http://framework.wymiwyg.org/ontology" />
+                  <arg value="-o" />
+                  <arg file="src/main/java/org/wymiwyg/bundleloader/vocabulary/BUNDLES.java" />
+                  <arg value="-n" />
+                  <arg value="BUNDLES" />
+                  <arg value="-a" />
+                  <arg value="http://framework.wymiwyg.org/ontology#" />
+                  <arg value="--package" />
+                  <arg value="org.wymiwyg.bundleloader.vocabulary" />
+                  <arg value="--ontology" />
+                </java>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>1.2.1</version>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Export-Package>org.wymiwyg.bundleloader</Export-Package>
+            <Private-Package>org.wymiwyg.bundleloader.launcher</Private-Package>
+            <Import-Package>!org.apache.felix.*,*</Import-Package>
+            <Bundle-Activator>org.wymiwyg.bundleloader.BundleLoader</Bundle-Activator>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse</groupId>
+      <artifactId>osgi</artifactId>
+      <version>3.3.0-v20070530</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.main</artifactId>
+      <version>1.0.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.wymiwyg</groupId>
+      <artifactId>wymiwyg-commons-jena</artifactId>
+      <version>0.5</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.easymock</groupId>
+      <artifactId>easymock</artifactId>
+      <version>2.3</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
