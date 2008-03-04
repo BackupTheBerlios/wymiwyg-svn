@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<!-- Shared parent, describing properties in common to all wymiwyg projects. -->
+	<!--  see http://repo1.maven.org/maven2/org/apache/apache/4/apache-4.pom for the apache super-parent -->
+	<groupId>org.wymiwyg</groupId>
+	<artifactId>wymiwyg</artifactId>
+	<packaging>pom</packaging>
+	<version>0.9</version>
+	<name>WYMIWYG</name>
+	<description></description>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<distributionManagement>
+		<repository>
+			<id>berlios-wymiwyg-repository</id>
+			<name>wymiwyg repository on berlios svn</name>
+			<url>
+				scp://shell.berlios.de/home/groups/wymiwyg/htdocs/maven2
+			</url>
+		</repository>
+	</distributionManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
