@@ -29,7 +29,7 @@ import org.osgi.framework.BundleContext;
  */
 public class BundleLoaderActivator implements BundleActivator {
 
-	@Override
+
 	public void start(BundleContext bundleContext) throws Exception {
 		System.out.println("start (will load and start additional bundle)");
 
@@ -68,7 +68,6 @@ public class BundleLoaderActivator implements BundleActivator {
 
 	}
 
-	@Override
 	public void stop(BundleContext arg0) throws Exception {
 		System.out.println("stopping " + BundleLoaderActivator.class.getName());
 
