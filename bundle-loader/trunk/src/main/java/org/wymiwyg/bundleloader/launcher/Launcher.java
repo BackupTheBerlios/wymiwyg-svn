@@ -17,20 +17,13 @@
 package org.wymiwyg.bundleloader.launcher;
 
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.felix.framework.Felix;
-import org.apache.felix.framework.cache.BundleCache; // import
-// org.apache.felix.framework.util.FelixConstants;
-// import org.apache.felix.framework.util.StringMap;
-import org.apache.felix.main.AutoActivator;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleActivator;
-import org.osgi.framework.BundleContext;
+import org.apache.felix.framework.cache.BundleCache;
 import org.osgi.framework.Constants;
 import org.wymiwyg.bundleloader.BundleLoaderActivator;
 
@@ -71,12 +64,12 @@ public class Launcher  {
 		configMap.put(BundleCache.CACHE_PROFILE_DIR_PROP, cachedir
 				.getAbsolutePath());
 
-		configMap.put("org.wymiwyg.bundleloader.rdffile", "http://foo.rdf");
+		configMap.put("org.wymiwyg.bundleloader.configGraph", "http://foo.rdf");
 		
 		// Create list to hold custom framework activators.
 		List<Object> list = new ArrayList<Object>();
 		// Add activator to process auto-start/install properties.
-		list.add(new AutoActivator(configMap));
+		//list.add(new AutoActivator(configMap));
 		// Add our own activator.
 		list.add(new BundleLoaderActivator());
 

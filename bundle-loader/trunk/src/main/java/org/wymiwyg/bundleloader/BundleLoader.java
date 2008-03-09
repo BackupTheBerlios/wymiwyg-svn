@@ -19,7 +19,10 @@ package org.wymiwyg.bundleloader;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Collection;
 
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.wymiwyg.bundleloader.vocabulary.BUNDLES;
@@ -50,39 +53,43 @@ public class BundleLoader {
 	 * http://framework.wymiwyg.org/ontology#Bundle in the configuration graph
 	 * 
 	 * @param configurationGraphURI
-	 * @throws BundleException 
-	 * @throws IOException 
+	 * @return a collection of the installed bundles
+	 * @throws BundleException
+	 * @throws IOException
 	 */
-	public void loadBundles(URI configurationGraphURI) throws IOException, BundleException {
+	public Collection<Bundle> loadBundles(URI configurationGraphURI) throws IOException,
+			BundleException {
 		Model model = ModelFactory.createDefaultModel();
 		model.read(configurationGraphURI.toString());
 		ResIterator bundleResIter = model.listSubjectsWithProperty(RDF.type,
 				BUNDLES.Bundle);
+		Collection<Bundle> result = new ArrayList<Bundle>();
 		while (bundleResIter.hasNext()) {
-			loadBundle(bundleResIter.nextResource());
+			result.add(loadBundle(bundleResIter.nextResource()));
 		}
+		return result;
 	}
 
-	private void loadBundle(Resource bundleResource) throws IOException, BundleException {
+	private Bundle loadBundle(Resource bundleResource) throws IOException,
+			BundleException {
 		StmtIterator stmtIter = bundleResource.listProperties(BUNDLES.location);
-		while (stmtIter.hasNext()) {
-			Statement currentStmt = stmtIter.nextStatement();
-			System.out.println(currentStmt);
-			Literal uriLit = currentStmt.getLiteral();
-			if (!uriLit.getDatatype().equals(XSDDatatype.XSDanyURI)) {
-				throw new RuntimeException(
-						"Object of location stmt not of type xsd:anyURI");
-			}
-			URI currentLocationURI;
-			try {
-				currentLocationURI = new URI(uriLit.getLexicalForm());
-			} catch (URISyntaxException e) {
-				throw new RuntimeException(e);
-			}
-			System.out.println(currentLocationURI);
-			bundleContext.installBundle(currentLocationURI.toString(),
-					currentLocationURI.toURL().openStream());
+
+		Statement currentStmt = stmtIter.nextStatement();
+		System.out.println(currentStmt);
+		Literal uriLit = currentStmt.getLiteral();
+		if (!uriLit.getDatatype().equals(XSDDatatype.XSDanyURI)) {
+			throw new RuntimeException(
+					"Object of location stmt not of type xsd:anyURI");
 		}
+		URI currentLocationURI;
+		try {
+			currentLocationURI = new URI(uriLit.getLexicalForm());
+		} catch (URISyntaxException e) {
+			throw new RuntimeException(e);
+		}
+		System.out.println(currentLocationURI);
+		return bundleContext.installBundle(currentLocationURI.toString(),
+				currentLocationURI.toURL().openStream());
 
 	}
 }

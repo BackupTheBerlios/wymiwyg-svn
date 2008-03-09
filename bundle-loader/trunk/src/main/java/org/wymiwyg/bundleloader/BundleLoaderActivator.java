@@ -16,15 +16,12 @@
  */
 package org.wymiwyg.bundleloader;
 
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
+import java.net.URI;
+import java.util.Collection;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
 
 /**
  * @author reto
@@ -35,40 +32,39 @@ public class BundleLoaderActivator implements BundleActivator {
 	@Override
 	public void start(BundleContext bundleContext) throws Exception {
 		System.out.println("start (will load and start additional bundle)");
-		System.out.println("Data file " + bundleContext.getDataFile("foo"));
-		System.out.println(bundleContext
-				.getProperty("org.wymiwyg.bundleloader.rdffile"));
 
+		String configurationGraphURIString = bundleContext
+				.getProperty("org.wymiwyg.bundleloader.configGraph");
+		URI configurationGraphURI = new URI(configurationGraphURIString);
+		Collection<Bundle> bundles = new BundleLoader(bundleContext).loadBundles(configurationGraphURI);
+		for (Bundle bundle : bundles) {
+			bundle.start();
+		}
 		// String bundleURLString =
 		// "file:///home/reto/workspaces/wrhapi/wrhapi/target/wrhapi-0.2.0.jar";
 
-		String bundleURLString = "file:///home/reto/workspaces/felix/servicebased.host/target/servicebased.host-1.0.0.jar";
-		URL bundleURL = new URL(bundleURLString);
-		Bundle bundle = bundleContext.installBundle(bundleURLString, bundleURL
-				.openStream());
-		System.out.println("Starting loaded bundle");
-		bundle.start();
+		
 
-		System.out.println("registered: "
-				+ bundleContext.registerService(Map.class.getName(),
-						new HashMap(), new Hashtable()));
-		System.out.println("registered: "
-				+ bundleContext.registerService(Map.class.getName(),
-						new HashMap(), new Hashtable()));
-		System.out.println("registered: "
-				+ bundleContext.registerService(Map.class.getName(),
-						new HashMap(), new Hashtable()));
-		ServiceReference[] allServiceReferences = bundleContext
-				.getAllServiceReferences(null, null);
-		System.out.println("Services: " + allServiceReferences);
-		for (ServiceReference serviceReference : allServiceReferences) {
-			String[] propertyKeys = serviceReference.getPropertyKeys();
-			for (String string : propertyKeys) {
-				System.out.println("Service-keys: " + string + " = "
-						+ serviceReference.getProperty(string));
-			}
-
-		}
+//		System.out.println("registered: "
+//				+ bundleContext.registerService(Map.class.getName(),
+//						new HashMap(), new Hashtable()));
+//		System.out.println("registered: "
+//				+ bundleContext.registerService(Map.class.getName(),
+//						new HashMap(), new Hashtable()));
+//		System.out.println("registered: "
+//				+ bundleContext.registerService(Map.class.getName(),
+//						new HashMap(), new Hashtable()));
+//		ServiceReference[] allServiceReferences = bundleContext
+//				.getAllServiceReferences(null, null);
+//		System.out.println("Services: " + allServiceReferences);
+//		for (ServiceReference serviceReference : allServiceReferences) {
+//			String[] propertyKeys = serviceReference.getPropertyKeys();
+//			for (String string : propertyKeys) {
+//				System.out.println("Service-keys: " + string + " = "
+//						+ serviceReference.getProperty(string));
+//			}
+//
+//		}
 
 	}
 

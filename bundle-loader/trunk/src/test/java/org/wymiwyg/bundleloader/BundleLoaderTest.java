@@ -60,4 +60,18 @@ public class BundleLoaderTest {
 		verify(bundleContextMock);
 	}
 
+
+	// /**
+	// * Test that bundles are not re-installed if already in the context
+	// */
+	// @Test
+	// public void bundlesNotReloaded() throws Exception {
+	// BundleContext bundleContextMock = createMock(BundleContext.class);
+	// Bundle[] alreadyLoadedBundles = new Bundle[0];
+	// alreadyLoadedBundles[0] = createNiceMock(Bundle.class);
+	// expect(alreadyLoadedBundles[0].getLocation())
+	// expect(
+	// bundleContextMock.getBundles()).andReturn(alreadyLoadedBundles);
+	// }
+
 }

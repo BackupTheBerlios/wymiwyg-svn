@@ -54,9 +54,9 @@
         <configuration>
           <instructions>
             <Export-Package>org.wymiwyg.bundleloader</Export-Package>
-            <Private-Package>org.wymiwyg.bundleloader.launcher</Private-Package>
+            <Private-Package>org.wymiwyg.bundleloader.launcher, org.wymiwyg.bundleloader.vocabulary</Private-Package>
             <Import-Package>!org.apache.felix.*,*</Import-Package>
-            <Bundle-Activator>org.wymiwyg.bundleloader.BundleLoader</Bundle-Activator>
+            <Bundle-Activator>org.wymiwyg.bundleloader.BundleLoaderActivator</Bundle-Activator>
           </instructions>
         </configuration>
       </plugin>
