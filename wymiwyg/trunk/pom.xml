@@ -6,7 +6,7 @@
 	<groupId>org.wymiwyg</groupId>
 	<artifactId>wymiwyg</artifactId>
 	<packaging>pom</packaging>
-	<version>0.9</version>
+	<version>0.9.1</version>
 	<name>WYMIWYG</name>
 	<description></description>
 	<licenses>
@@ -41,4 +41,18 @@
 			</plugin>
 		</plugins>
 	</build>
+	<dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.wymiwyg</groupId>
+      	<artifactId>wymiwyg-commons-core</artifactId>
+      	<version>0.7.1</version>
+      </dependency>
+      <dependency>
+	      <groupId>org.wymiwyg</groupId>
+		  <artifactId>wymiwyg-commons-jena</artifactId>
+		  <version>0.5.3</version>
+  	  </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>
