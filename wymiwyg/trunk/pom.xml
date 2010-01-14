@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
 	<modelVersion>4.0.0</modelVersion>
-	<!-- Shared parent, describing properties in common to all wymiwyg projects. -->
-	<!--  see http://repo1.maven.org/maven2/org/apache/apache/4/apache-4.pom for the apache super-parent -->
 	<groupId>org.wymiwyg</groupId>
 	<artifactId>wymiwyg</artifactId>
 	<packaging>pom</packaging>
-	<version>0.9.1</version>
+	<version>0.9.2</version>
 	<name>WYMIWYG</name>
-	<description></description>
+	<description>Shared parent, describing properties in common to all wymiwyg projects.</description>
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
@@ -17,15 +15,42 @@
 		</license>
 	</licenses>
 	<distributionManagement>
+		<snapshotRepository>
+			<id>shell.berlios.de</id>
+			<name>wymiwyg snapshot repository on berlios svn</name>
+			<url>
+				scp://shell.berlios.de/home/groups/wymiwyg/htdocs/maven2/snapshots
+			</url>
+		</snapshotRepository>
 		<repository>
-			<id>berlios-wymiwyg-repository</id>
+			<id>shell.berlios.de</id>
 			<name>wymiwyg repository on berlios svn</name>
 			<url>
-				scp://shell.berlios.de/home/groups/wymiwyg/htdocs/maven2
+				scp://shell.berlios.de/home/groups/wymiwyg/htdocs/maven2/releases
 			</url>
 		</repository>
 	</distributionManagement>
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.1.1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-site-plugin </artifactId>
+					<version>2.1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-clean-plugin </artifactId>
+					<version>2.3</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -41,18 +66,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.wymiwyg</groupId>
-      	<artifactId>wymiwyg-commons-core</artifactId>
-      	<version>0.7.1</version>
-      </dependency>
-      <dependency>
-	      <groupId>org.wymiwyg</groupId>
-		  <artifactId>wymiwyg-commons-jena</artifactId>
-		  <version>0.5.3</version>
-  	  </dependency>
-    </dependencies>
-  </dependencyManagement>
 </project>
