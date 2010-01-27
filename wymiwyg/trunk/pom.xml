@@ -7,6 +7,12 @@
 	<version>0.9.2</version>
 	<name>WYMIWYG</name>
 	<description>Shared parent, describing properties in common to all wymiwyg projects.</description>
+	<url>http://developer.berlios.de/projects/wymiwyg/</url>
+	<scm>
+		<developerConnection>scm:svn:https://svn.berlios.de/svnroot/repos/wymiwyg/</developerConnection>
+		<connection>scm:svn:http://svn.berlios.de/svnroot/repos/wymiwyg/</connection>
+		<url>http://svn.berlios.de/svnroot/repos/wymiwyg/</url>
+	</scm>
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
