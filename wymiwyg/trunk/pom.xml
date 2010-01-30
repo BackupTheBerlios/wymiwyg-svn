@@ -22,18 +22,14 @@
 	</licenses>
 	<distributionManagement>
 		<snapshotRepository>
-			<id>shell.berlios.de</id>
-			<name>wymiwyg snapshot repository on berlios svn</name>
-			<url>
-				scp://shell.berlios.de/home/groups/wymiwyg/htdocs/maven2/snapshots
-			</url>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<repository>
-			<id>shell.berlios.de</id>
-			<name>wymiwyg repository on berlios svn</name>
-			<url>
-				scp://shell.berlios.de/home/groups/wymiwyg/htdocs/maven2/releases
-			</url>
+			<id>sonatype-nexus-staging</id>
+			<name>Nexus Release Repository </name>
+			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
 	<build>
