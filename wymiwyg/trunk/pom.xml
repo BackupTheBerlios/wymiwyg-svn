@@ -20,6 +20,21 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+	<developers>
+		<developer>
+			<id>reto</id>
+			<name>Reto</name>
+			<email>reto@wymiwyg.org</email>
+			<url>https://farewellutopia.com/user/me/profile#me</url>
+			<organization>trialox</organization>
+			<organizationUrl>http://trialox.org</organizationUrl>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
 	<distributionManagement>
 		<snapshotRepository>
 			<id>sonatype-nexus-snapshots</id>
