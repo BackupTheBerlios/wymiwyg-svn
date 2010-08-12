@@ -4,14 +4,14 @@
 	<groupId>org.wymiwyg</groupId>
 	<artifactId>wymiwyg</artifactId>
 	<packaging>pom</packaging>
-	<version>0.9.3</version>
+	<version>0.9.4-SNAPSHOT</version>
 	<name>WYMIWYG</name>
 	<description>Shared parent, describing properties in common to all wymiwyg projects.</description>
 	<url>http://developer.berlios.de/projects/wymiwyg/</url>
 	<scm>
-		<developerConnection>scm:svn:https://svn.berlios.de/svnroot/repos/wymiwyg/wymiwyg/tags/wymiwyg-0.9.3</developerConnection>
-		<connection>scm:svn:http://svn.berlios.de/svnroot/repos/wymiwyg/wymiwyg/tags/wymiwyg-0.9.3</connection>
-		<url>http://svn.berlios.de/viewvc/wymiwyg/wymiwyg/tags/wymiwyg-0.9.3</url>
+		<developerConnection>scm:svn:https://svn.berlios.de/svnroot/repos/wymiwyg/wymiwyg/trunk/</developerConnection>
+		<connection>scm:svn:http://svn.berlios.de/svnroot/repos/wymiwyg/wymiwyg/trunk/</connection>
+		<url>http://svn.berlios.de/viewvc/wymiwyg/wymiwyg/trunk/</url>
 	</scm>
 	<licenses>
 		<license>
